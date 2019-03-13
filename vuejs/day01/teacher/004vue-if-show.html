@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-show="flag">{{message}}</div>
+        <div v-if="flag">{{message}}</div>
+
+
+        <div v-if="num == 1">张三</div>
+        <div v-else-if="num == 2">李四</div>
+        <div v-else>王五</div>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"张秋实",
+            flag:true,
+            num:21
+        }
+    })
+
+    /*
+        v-if:操作元素的创建和销毁
+
+        v-show:操作元素的display属性  true为显示 false为隐藏
+
+
+
+        v-if和v-show的区别  以及使用的场景
+
+        相比较而言  v-show的性能比v-if要高一些
+
+
+        使用的场景：
+            普通用户  超级管理页面渲染的信息 可以用v-if
+
+            元素隐藏显示 v-show
+
+    */
+</script>

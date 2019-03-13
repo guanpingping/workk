@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div ref="box">{{message}}</div>
+        <button @click="handleUpdate()">点击</button>
+    </div>
+
+
+    <button onclick="handledestroy()">销毁</button>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"1819",
+            a:"",
+            b:"",
+          
+        }
+        ,methods:{
+            handleUpdate(){
+               this.message = 10000
+            }
+        },
+        beforeCreate(){
+            console.log("beforeCreate------")
+        },
+        created(){
+            console.log("created------")
+        },
+        beforeMount(){
+            console.log("beforeMount-----");
+            console.log(document.getElementById("app").innerHTML)
+        },
+        mounted () {
+            console.log(document.getElementById("app").innerHTML)
+            console.log(this.$refs.box)
+            console.log("mounted-----")
+        },
+        beforeUpdate () {
+            this.message = 3000;
+            console.log("beforeUpdate------")
+        },
+        updated() {
+            console.log(this.$refs.box)
+            console.log("updated------")
+        },
+        beforeDestroy(){
+            console.log(this.message);
+            console.log(this.$refs.box)
+            console.log("beforeDestroy-----")
+        },
+        destroyed(){
+            console.log(this.message);
+            console.log(this.$refs.box)
+            console.log("destroyed-----")
+        }
+    })
+   
+    console.log(vm);
+
+
+    function handledestroy(){
+        //销毁
+       vm.$destroy();
+    }
+    /*
+
+        innerHTML  innerText  outerHTML  outerText
+
+
+        一个组件从创建到销毁的这个过程叫做生命周期   生命周期钩子函数  
+
+        beforeCreate:创建前
+            vue实例创建的时候会执行beforeCreate 这个生命周期函数用来做初始化的作用，在这个生命周期函数里面我们可以
+            进行加载动画loading
+
+        created:创建后
+            当beforeCreate执行完毕以后就会执行created,在这个生命周期函数里面，会将data和methods里面所以的方法
+            和属性遍历挂载在vue的实例身上，同时还会给data中的每一个属性添加一个getter和setter方法,
+            同时在这个生命周期函数里面可以进行ajax的数据请求
+
+        beforeMount:挂载前
+            数据和模板还没有进行相结合template里面的DOM结构还是虚拟DOM,在这里是获取不到真实的DOM结构
+
+        mounted:挂载后
+            数据和模板进行相结合 生成了真正的DOM结构  在这个生命周期函数里面，可以通过$refs获取真实的DOM结构   
+
+        beforeDestroy:销毁前
+
+            在这个生命周期函数里面还是可以访问到相应的数据，以及真实的DOM结构，在当前生命周期函数里面我们可以做
+            事件的解绑，移除监听等工作
+
+        destroyed：销毁后 
+            在这个生命周期函数里面断开了vue实例与DOM之间的关联   但是还是可以访问到数据的，但是访问不到真实的DOM结构了
+    
+    
+        beforeUpdate 更新前
+            当data中的数据发生改变的时候就会执行当前生命周期函数,可以进行data数据最后的修改  在这里面访问到的DOM
+            结构是未更新之前的DOM结构
+
+        updated 更新后
+            最新的数据和模板进行相结合生成最终的一个DOM结构， 在这个生命周期函数里面可以获取到数据更新后最新的DOM结构
+            检测数据是否更新
+    */
+</script>

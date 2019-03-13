@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="message"/>
+			<p>{{message}}</p>
+			
+			<hr>
+			<label>
+				男：<input type="radio" value="男" :checked="checkval=='男'" v-model="checkval"/>
+				女：<input type="radio" value="女" :checked="checkval=='女'" v-model="checkval"/>
+			</label>
+			<p>你选择的性别是：{{checkval}}</p>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vw = new Vue({
+		el:"#app",
+		data:{
+			message:"1819",
+			checkval:"男"
+		},
+		methods:{
+			
+		}
+	})
+</script>

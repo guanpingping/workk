@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="a">+
+        <input type="text" v-model.number="b">
+        <button>计算</button>
+        <p>{{c}}</p>
+
+        <hr>
+        <input type="text" v-model="obj.name">
+        <input type="text" v-model="obj.age">
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    /*
+       watch 属性监听：
+            监听属性的变化
+
+            1、watch里面的方法名称是data中的属性名称
+            2、每个方法中会接受到2个参数  一个参数是newVal  一个参数是oldVal
+            3、watch的方法是不需要调用的
+
+
+        深度监听
+            当数据是一个引用数据类型的时候需要进行深度监听 可以获取到一个新值  深度监听的时候必须设置属性deep:true
+
+    */
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            a:"",
+            b:"",
+            c:"",
+            obj:{
+                name:"张三",
+                age:18
+            }
+        },
+        watch:{
+            a(newVal,oldVal){
+                console.log("watch----a")
+                console.log(newVal,oldVal)
+                this.c = this.b + newVal;
+            },
+            b(newVal,oldVal){
+                console.log("watch----b")
+                this.c = this.a + newVal;
+            },
+            // "obj.name"(newVal,oldVal){
+            //     console.log(newVal,oldVal);
+            // },
+            // "obj.age"(newVal,oldVal){
+            //     console.log(newVal,oldVal);
+            // }
+            obj:{
+                handler(newVal){
+                    console.log(newVal);
+                },
+                deep:true
+            }
+        }
+    })
+
+
+    /*
+        methods  computed  watch三者之间的区别
+            1、methods:  里面存放的方法，每次调用的时候都需要事件驱动  
+
+            2、computed:
+                计算属性
+                    1、只要data中的属性发生了改变，那么就会触发computed里面的方法
+                    2、computed里面的方法调用的时候不需要加()
+                    3、data里面的属性如果没有发生改变的时候会从缓存中读取最终的一个结果
+
+            3、watch
+                1、watch里面的方法是不需要调用的
+                2、watch里面的方法都会接受到2个参数  一个是新值 一个是旧值
+                3、watch里面的方法名称是data中的key值
+                4、如果data中的属性值是一个对象的情况下需要进行一个深度监听 设置deep:true
+    
+    */
+</script>

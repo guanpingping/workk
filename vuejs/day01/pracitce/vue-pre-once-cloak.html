@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!--解析数据的只解析一次，如果下次发生变化不会解析-->
+			<div v-once>
+				{{message}}
+			</div>
+			<!--不会解析数据{{}}中的数据-->
+			<div v-pre>
+				{{message}}
+			</div>
+			<!--防止第一次加载数据的时候，如果数据没有解析完毕{{}}会进行显示-->
+			<div v-cloak>
+				{{message}}
+			</div>
+			<button v-on:click="clickupdate">修改数据</button>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			message:"1819"
+		},
+		methods:{
+			clickupdate:function(){
+				this.message = "不忘初心"
+			}
+		}
+	})
+</script>

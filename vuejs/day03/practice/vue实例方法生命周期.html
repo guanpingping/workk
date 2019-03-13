@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<div>{{message}}</div>
+			<h2>{{age}}</h2>
+			<ul ref="list">
+				<li v-for="(item,index ) in arr" >{{item}}</li>
+			</ul>
+		</div>
+		<button onclick="handleClick()">挂载</button>
+		<button onclick="handleDestroy()">销毁</button>
+		<button onclick="handleUpdate()">强制更新</button>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			message:"往事随风，随遇而安，岁月静好",
+			arr:[10,20,23,40]
+		},
+		created(){
+			setTimeout(()=>{
+				for( var i = 0 ; i < 10 ; i++ ){
+					this.arr.push(i);	
+				}
+			},2000)
+		},
+		beforeMount(){
+			this.age=18;
+		},
+		mounted(){
+			console.log(this.$refs.list.offsetHeight)
+		},
+		updated(){
+			this.$nextTick(function(){
+				console.log(this.$refs.list.offsetHeight)
+			})
+		}
+	})
+	
+	
+	function handleClick(){
+		vm.$mount("#box");
+	}
+	function handleDestroy(){
+		vm.$destroy();
+	}
+	function handleUpdate(){
+		vm.$forceUpdate();
+	}
+//	vm.$mount("#box");
+</script>

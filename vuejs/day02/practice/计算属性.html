@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model.number="a"/>+
+			<input type="text" v-model.number="b"/>
+			<button v-on:click="clicksum">计算</button>
+			<p>methods:{{c}}</p>
+			<p>computed:{{count}}</p>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			a:"",
+			b:"",
+			c:""
+		},
+		methods:{
+			clicksum:function(){
+				console.log("handleSum执行了");
+				this.c = this.a+this.b;
+			}
+		},
+		computed:{
+			count:function(){
+				console.log("count执行了")
+				return this.a+this.b
+			}
+		}
+	})
+</script>

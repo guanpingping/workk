@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in arr">{{item}}------{{index}}</li>
+        </ul>
+        <p v-for="item in 'qianfeng'">{{item}}</p>
+        <p v-for="(n,index) in 10">{{n}}----{{index}}</p>
+         <div>
+            <div v-for="(item,index) in obj">
+                <p>{{item.name}}</p>
+                <p>{{item.age}}</p>
+                <p>{{item.sex}}</p>
+            </div>
+         </div>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            arr:[10,20,30,40],
+            obj:[
+                {
+                    name:"张三",
+                    age:"20",
+                    sex:"男"
+                },
+                {
+                    name:"李四",
+                    age:"33",
+                    sex:"女"
+                },
+                {
+                    name:"杨琪",
+                    age:"22",
+                    sex:"男"
+                }
+            ]
+        }
+    })
+
+    /*
+        v-for:循环
+            v-for = "(数据,下标) in  需要遍历的数据"
+    
+    */
+</script>

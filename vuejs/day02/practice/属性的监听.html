@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model.number='a'/>+
+			<input type="text" v-model.number='b'/>=
+			<input type="text" v-model='c'/><br>
+			
+			<input type="text" v-model="obj.name">
+       		<input type="text" v-model="obj.age">
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			a:"",
+			b:"",
+			c:"",
+			obj:{
+				name:"王建霞",
+				age:18
+			}
+		},
+		watch:{
+			a:function( newVal , oldVal ){
+				console.log(newVal , oldVal );
+				this.c = this.b + newVal;
+			},
+			b:function( newVal , oldVal ){
+				console.log(newVal , oldVal );
+				this.c = this.a + newVal;
+			},
+			obj:{
+				handler( newVal , oldVal ){
+					//新旧值一样，因为放在堆中，新值和旧值指向的是同一个地址
+					console.log(newVal , oldVal );
+				},
+				deep:true
+			}
+		}
+	})
+</script>

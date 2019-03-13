@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input 
+            type="text" 
+            v-model="inputVal">
+        <button @click="handleAdd()">点击</button>
+        <ul>
+           <li v-for="(item,index) in todoList">{{item}}<button @click="handleDel(index)">删除</button></li>
+        </ul>
+    </div>
+    
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+var vm = new Vue({
+    el:"#app",
+    data:{
+        inputVal:"",
+        todoList:[]
+    },
+    methods:{
+        handleAdd(){
+            this.todoList.push(this.inputVal);
+            this.inputVal = "";
+        },
+        handleDel(index){
+            this.todoList.splice(index,1);  
+        }
+    }
+})
+</script>

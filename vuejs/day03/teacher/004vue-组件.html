@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <Banner></Banner> -->
+        <banner-com></banner-com>
+    </div>
+
+    <div id="app1">
+        <banner-com></banner-com>
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    // Vue.component("Banner",{
+    //     template:"<div><img :src='img'/></div>",
+    //     data(){
+    //         return {
+    //             img:"http://upload.mobiletrain.org/2018/1217/1545030490346.jpg"
+    //         }
+    //     },
+    //     methods:{
+
+    //     },
+    //     computed:{
+
+    //     },
+    //     beforeCreate () {
+    //         console.log("beforeCreate-----")
+    //     }
+    // })
+    var vm = new Vue({
+        el: "#app",
+        components: {
+            "banner-com": {
+                template: "<div><img :src='img'/></div>",
+                data() {
+                    return {
+                        img: "http://upload.mobiletrain.org/2018/1217/1545030490346.jpg"
+                    }
+                },
+                methods: {
+
+                },
+                computed: {
+
+                },
+                beforeCreate() {
+                    console.log("beforeCreate-----")
+                }
+            }
+        }
+    })
+    var vm = new Vue({
+        el:"#app1"
+    })
+
+    /*
+        组件：
+            vue中创建组件的方式
+
+            全局组件
+                必须在实例之前创建全局组件
+                  Vue.component()
+                  参数1：组件名称
+                  参数2：对象 组建的配置项   options
+                    配置项中的参数与vue实例中的参数一摸一样
+
+                    唯一不同的两点
+                        1、多了一个template属性  这个属性用来书写模板
+                        2、Vue中的data属性不在是一个对象而是一个函数
+
+
+                    你可以将组件的内部结构理解成一个小型的vue实例
+
+
+
+                  建议组件名称大写  不允许与HTML的标签相同
+
+            局部组件
+
+                在vue的实例中书写
+                components:{
+                    key:val
+                    组件名称   组件的配置项
+                }
+
+    */
+</script>

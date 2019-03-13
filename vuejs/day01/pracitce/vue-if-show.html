@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			[v-cloak]{
+				display: none;	
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div v-if="flag" v-cloak>{{message}}</div>
+			<!--v-show是对display进行操作-->
+			<div v-show="flag" v-cloak>{{message}}</div>
+			
+			<div v-if="num==1">张三</div>
+			<div v-else-if="num==3">李四</div>
+			<div v-else>王五</div>
+			
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			message:"zhoujunqi",
+			flag:false,
+			num:1
+		}
+	})
+</script>

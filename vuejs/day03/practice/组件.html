@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<Banner></Banner>
+			<local-com></local-com>
+			<local-com></local-com>
+		</div>
+		<div id="app1">
+			<Banner></Banner>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	//全局组件
+	Vue.component("Banner",{
+		template:"<div>{{message}}<img :src='img'/></div>",
+		data(){
+			return {message:15,img:'http://upload.mobiletrain.org/2018/1217/1545030490346.jpg'}
+		}
+	})
+	//局部注册的组件
+	
+	var localCom = {
+		template:"<div @click='hasclick'>localCom component{{a}}</div>",
+		data:function(){
+			return{
+				a:5
+			}
+		},
+		methods:{
+			hasclick:function(){
+				this.a++;
+			}
+		}
+	}
+	var vm = new Vue({
+		el:"#app",
+		components:{
+			localCom
+		}
+	})
+	var vm = new Vue({
+		el:"#app1",
+	})
+</script>

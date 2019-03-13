@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box1{
+				padding: 20px;
+				width: 100px;
+				border: 1px solid #ccc;
+			}
+			.box2{
+				min-height: 100px;
+				width: 100px;
+				background: pink;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<button v-on:click='clickbtn'>点击</button>
+			<button @click='clickbtn'>点击</button>
+			
+			<!--.prevent阻止浏览器默认行为-->
+			<!--.stop阻止冒泡-->
+			<div @contextmenu.prevent="hasmouse" class="box1">
+				<div @click.stop="hasmouseone" class="box2">
+				</div>
+			</div>
+			<input type="text" @keydown="haskeydown($event)" />
+			<input type="text" @keypress="haskeydown($event)" />
+			
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			
+		},
+		methods:{
+			clickbtn:function(){
+				alert();
+			},
+			hasmouse:function(){
+				console.log("执行了1");
+			},
+			hasmouseone:function(){
+				console.log("执行了2")
+			},
+			haskeydown:function(e){
+				console.log("执行了"+e)
+			}
+		}
+	})
+</script>

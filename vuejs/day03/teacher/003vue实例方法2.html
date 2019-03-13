@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="handleClick()">点击</button>
+        <button @click="handleOff()">解绑</button>
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        created() {
+            this.$once("handle",this.fn1)
+
+            this.$once("handle",this.fn2)
+
+            this.$on("handle",this.fn3)
+
+            this.$on("handle",this.fn4)
+        },
+        methods: {
+            fn1() {
+                alert(1)
+            },
+            fn2() {
+                alert(2)
+            },
+            fn3() {
+                alert(3)
+            },
+            fn4() {
+                alert(4)
+            },
+            handleClick() {
+                this.$emit("handle", 123)
+            },
+            handleOff(){
+                this.$off("handle",this.fn2)
+            }
+        }
+    })
+
+    /*
+        $on    事件绑定
+        $emit  事件的触发
+        $off   事件的解绑
+        $once  事件只绑定一次
+
+
+
+
+
+        $on:
+            事件的绑定
+
+            参数2：
+                1、事件名称
+                2、回调函数
+
+        $emit
+            事件的触发
+
+            参数2：
+                1、事件名称       必填
+                2、需要传递的参数  选填
+
+
+        $off
+            事件的解绑
+
+                参数2
+                    1.事件名称
+                    2.需要解绑的函数  选填   如果不填默认移除所有函数  如果有值则移除指定函数
+
+        $once
+            只绑定一次事件
+
+            用法和$on一样
+
+    */
+</script>

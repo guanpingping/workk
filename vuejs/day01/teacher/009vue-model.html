@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <p>{{message}}</p>
+        <hr />
+        <label>
+            男：<input type="radio" value="男" v-model="radioVal" :checked="radioVal == '男'"/>
+        </label>
+        <label>
+            女：<input type="radio" value="女" v-model="radioVal" :checked="radioVal == '女'"/>
+        </label>
+        <p>您选择的性别是:{{radioVal}}</p>
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            message: "1819",
+            radioVal: "男"
+        }
+    })
+
+    /*
+        v-model:
+            双向数据绑定
+
+        v-model改变data中的数据 data中的数据与视图进行相关联  data数据发生改变视图也会发生改变
+
+
+
+        v-model的底层原理
+          2.0  Object.defineProperty (作业)   ==    vue3.0 proxy  (作业);
+
+
+        1、虚拟DOM了解
+        2、 2.0  Object.defineProperty (作业)   ==    vue3.0 proxy  (作业);
+        3、不用v-model实现单选框的切换
+        4、用vue实现选项卡
+    */
+
+
+</script>

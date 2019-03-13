@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p>三只松鼠</p>
+			<button @click="subclick">-</button>
+			<input type="text" :value="count"/>
+			<button @click="addclick">+</button>
+			<p>单价:{{price}}</p>
+			<p>运费：{{freight}}</p>
+			<p>总和:{{sum}}</p>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			price:38,
+			count:1,
+			freight:10
+		},
+		methods:{
+			subclick:function(){
+				if(this.count<=1){
+					this.count=1;
+				}else{
+					this.count--;
+				}
+			},
+			addclick:function(){
+				this.count++;
+			}
+		},
+		computed:{
+			sum:function(){
+				var sum = this.price*this.count;
+				return sum>299?sum:sum+this.freight;
+			}
+		}
+	})
+</script>

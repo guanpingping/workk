@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <p>{{message}}</p>
+        <hr />
+
+        <label>
+            男：<input type="radio" value="男" :checked="radioVal == '男'" v-model="radioVal" />
+        </label>
+        <label>
+            女：<input type="radio" value="女" :checked="radioVal == '女'" v-model="radioVal" />
+        </label>
+        <p>您选择的性别是:{{radioVal}}</p>
+
+        <hr>
+        <label>
+            抽烟:<input 
+            type="checkbox" 
+            value="抽烟" 
+            v-model="checkVal"
+            />
+        </label>
+        <label>
+            喝酒:<input 
+            type="checkbox" 
+            value="喝酒" 
+            v-model="checkVal"
+            />
+        </label>
+        <label>
+            烫头:<input 
+            type="checkbox" 
+            value="烫头" 
+            v-model="checkVal"
+            />
+        </label>
+        <label>
+            大保健:<input 
+            type="checkbox" 
+            value="大保健"
+            v-model="checkVal"
+            />
+        </label>
+
+        <!-- <label>
+            抽烟:<input type="checkbox" value="抽烟" @click="handleSelected($event)" />
+        </label>
+        <label>
+            喝酒:<input type="checkbox" value="喝酒" @click="handleSelected($event)" />
+        </label>
+        <label>
+            烫头:<input type="checkbox" value="烫头" @click="handleSelected($event)" />
+        </label>
+        <label>
+            大保健:<input type="checkbox" value="大保健" @click="handleSelected($event)" />
+        </label> -->
+        <p>您选择的爱好是</p>
+        <ul>
+            <li v-for="(item,index) in checkVal">{{item}}</li>
+        </ul>
+        <hr/>
+        <select v-model="selectVal">
+            <option>1998</option>
+            <option>1999</option>
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+        </select>
+        <p>您选择的年龄是:{{selectVal}}</p>
+    </div>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            message: 1819,
+            radioVal: "男",
+            checkVal: [],
+            selectVal:"2000"
+        },
+        methods: {
+            // handleSelected(e) {
+            //    let val = e.target.value;
+               
+            //    if(this.checkVal.length == 0){
+            //        this.checkVal.push(val);
+            //    }else{
+            //         var flag = this.checkVal.includes(val);
+            //         if(!flag){
+            //             this.checkVal.push(val); 
+            //         }else{
+            //             var index = this.checkVal.indexOf(val);
+            //             this.checkVal.splice(index,1)
+            //         }
+
+            //    }
+            // }
+        }
+
+    })
+</script>

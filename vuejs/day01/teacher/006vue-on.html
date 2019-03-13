@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-on:click="handleClick">点击</div>
+        <div @mouseover="handleClick">点击</div>
+
+
+
+        <div class="box" @contextmenu.prevent="handleClickBox('box')">
+            <div class="box1" @click.stop.once="handleClickBox1('box1',$event)"></div>
+        </div>
+
+        <input type="text" @keydown.13="handleKeyDown">
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        //vue实例身上所有的方法都需要写在methods里面
+        methods:{
+            handleClick(){
+                
+            },
+            handleClickBox(val){
+                console.log("打印了:"+val);
+            },
+            handleClickBox1(val,e){
+                console.log("打印了:"+val);
+                console.log(e)
+            },
+            handleKeyDown(){
+                console.log("执行了")
+            }
+        }
+    })
+
+    /*
+        v-on:
+            绑定事件
+                v-on:click
+                v-on:mouseover
+                .....
+
+            简写：
+                @代替v-on
+
+
+        修饰符：
+            .stop:阻止事件冒泡
+            .prevent:组织浏览器默认事件
+            .once： 事件只执行一次
+            .enter:  回车
+
+        如果说想要得到事件对象
+            $event
+
+
+        @contextmenu:右键菜单事件
+
+        @keydown后面可以根keycode值  可以用来当做修饰符进行使用
+
+
+        methods:里面书写的是当前实例所需要的方法
+    */
+</script>

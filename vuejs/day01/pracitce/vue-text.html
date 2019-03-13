@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p v-text="message"></p>
+			<li v-text="arr[0]"></li>
+			<p v-text="obj.name"></p>
+			<p v-text="1+2"></p>
+			<p v-text="3?1:5"></p>
+			<p v-text="25%3"></p>
+			<p v-text="25/3"></p>
+			<hr>
+			<p>{{message}}</p>
+			<li>{{arr[0]}}</li>
+			<p>{{obj.name}}</p>
+			<p>{{1+2}}</p>
+		</div>
+	</body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	var app = new Vue({
+		el:"#app",
+		data:{
+			message:"hello vue",
+			arr:[12,34,43,12],
+			obj:{
+				name:"张三",
+				age:18
+			}
+		}
+	})
+</script>

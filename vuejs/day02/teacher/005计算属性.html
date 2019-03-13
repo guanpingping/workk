@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="a">
+        +
+        <input type="text" v-model.number="b">
+        <button @click="handleSum()">计算</button>
+        <p>methods:{{c}}</p>
+        <p>computed:{{count}}</p>
+
+        <button @click="handleClick()">比较</button>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+/*
+    computed:计算属性：
+        通过属性计算的来的属性
+
+    computed 这个对象里面存放的都是方法
+        1、computed里面的方法在调用的时候不需要加();
+        2、只要data中的属性发生了变化那么就会触发computed里面对应的方法
+        3。如果属性没有发生改变的时候,该方法不会触发，而是从缓存中读取最终的结果
+        4、computed里面的方法必须return出一个返回值
+*/
+
+
+var vm = new Vue({
+    el:"#app",
+    data:{
+        a:"",
+        b:"",
+        c:""
+    },
+    methods:{
+        handleSum(){
+            console.log("handleSum执行了");
+            this.c = this.a+this.b;
+        },
+        handleClick(){
+            this.handleSum();
+            console.log(this.count)
+        }
+    },
+    computed:{
+        count(){
+            console.log("count执行了")
+            return this.a + this.b;
+            
+        }
+    }
+})
+</script>

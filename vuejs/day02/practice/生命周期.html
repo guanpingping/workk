@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div ref="con">{{message}}</div>
+			<!--<div>{{age}}</div>-->
+			<input type="text" v-model="message"/>
+			<button @click="showhandle">点击显示age</button>
+		</div>
+		<button onclick="delclick()">销毁</button>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			message:"1819"
+		},
+		methods:{
+			showhandle:function(){
+				/*this.$forceUpdate();*/
+				this.message = 1500
+			}
+		},
+		beforeCreate(){
+			console.log(document.getElementById("app").innerHTML)
+			console.log("----------beforeCreate--------------");
+		},
+		created(){
+			console.log(document.getElementById("app").innerHTML)
+			console.log("-------------create--------------");
+		},
+		beforeMount(){
+			console.log(document.getElementById("app").innerHTML)
+			console.log(this.$refs.con)
+			console.log("------------beforeMount-------------")
+		},
+		mounted(){
+			console.log(document.getElementById("app").innerHTML)
+			console.log(this.$refs.con)
+			console.log("------------mounted-------------")
+		},
+		beforeUpdate(){
+			this.message="3000"
+			console.log("------------beforeUpdate-----------")
+			console.log(document.getElementById("app").innerHTML)
+			console.log(this.$refs.con)
+			console.log("------------beforeUpdate-----------")
+		},
+		updated(){
+			console.log(document.getElementById("app").innerHTML)
+			console.log(this.$refs.con)
+			console.log("------------update-----------")
+		},
+		beforeDestroy(){
+//			console.log(document.getElementById("app").innerHTML)
+			console.log(this.$refs.con)
+			console.log("------------beforeDestroy-------------")
+		},
+		destroyed(){
+//			 console.log(document.getElementById("app").innerHTML)
+			console.log(this.$refs.con)
+			console.log("------------destroyed-------------")
+		}
+	})
+	vm.age = 19;
+	
+	function delclick(){
+		vm.$destroy();
+	}
+	console.log(vm)
+</script>

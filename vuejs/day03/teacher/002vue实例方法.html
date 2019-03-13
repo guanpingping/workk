@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{message}}</div>
+        <h2>{{age}}</h2>
+        <ul ref="list">
+            <li v-for="(item,index) in arr">{{item}}</li>
+        </ul>
+    </div>
+   
+
+    <button onclick="handleClick()">挂载</button>
+    <button onclick="handleDetroy()">销毁</button>
+    <button onclick="handleUpdate()">强制更新</button>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm =  new Vue({
+        el:"#app",
+        data:{
+            message:"卢夫人说:'我总不能阻止他奔向比我更好的人吧'",
+            arr:[10,20,30,40],
+        },
+        created () {
+            setTimeout(()=>{
+                for(var i=0;i<10;i++){
+                    this.arr.push(i);
+                }
+            },3000)  
+        },
+        beforeMount() {
+            this.age = 30;
+        },
+        mounted () {
+           console.log(this.$refs.list.offsetHeight)
+        },
+        updated () {
+            console.log(this.$refs.list.offsetHeight)
+        }
+    })
+    
+
+   
+
+    function handleClick(){
+        vm.$mount("#app1");
+    }
+
+    function handleDetroy() { 
+        vm.$destroy()
+    }
+
+    function handleUpdate() { 
+        vm.$forceUpdate();
+    }
+    /*
+        vue  实例里面的一些方法
+
+        $mount
+
+        el:可读不设置的
+
+        el的权重大于$mount
+
+
+        $destroy()
+            销毁组件
+
+            断开vue与DOM之间的关联
+
+            手动销毁
+
+
+        $forceUpdate 强制更新
+            当属性身上没有getter 和setter方法的时候 可以调用此方法进行强制更新
+
+
+        $nextTick
+            获取数据更新后最新的DOM结构
+    */
+</script>

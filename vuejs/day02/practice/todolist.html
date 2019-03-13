@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="inputval"/>
+			<button v-on:click="addclick">点击</button>
+			<button v-on:click="queryclick">查找</button>
+			<ul>
+				<li v-for="(item,index) in todolist" v-show="item.flag">{{item.text}}<button v-on:click="delclick(index)">删除</button></li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			inputval:"",
+			todolist:[]
+		},
+		methods:{
+			addclick:function(){
+				this.todolist.push({"text":this.inputval,"flag":true}) ;
+				console.log(this.todolist)
+				this.inputval = "";
+			},
+			delclick:function(index){
+				this.todolist.splice(index,1);
+			},
+			queryclick:function(){
+				this.todolist.forEach((item)=>{
+					if(item.text.includes(this.inputval)){
+						item.flag = true;
+					}else{
+						item.flag = false;
+					}
+				})
+			}
+		}
+	})
+</script>

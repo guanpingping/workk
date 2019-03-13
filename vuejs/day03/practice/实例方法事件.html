@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<button @click="hasclick">绑定</button>
+			<button @click="hasoff">解绑</button>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		created(){
+			/*事件的一次绑定*/
+			this.$once("hason",this.fn1);
+			this.$once("hason",this.fn2);
+			/*事件的绑定*/
+			this.$on("hason",this.fn3);
+			this.$on("hason",this.fn4);
+		},
+		methods:{
+			fn1:function(){
+				alert("1");		
+			},
+			fn2:function(){
+				alert("2");
+			},
+			fn3:function(){
+				alert("3")
+			},
+			fn4:function(){
+				alert("4")
+			},
+			hasclick:function(){
+				/*事件触发的*/
+				this.$emit("hason");
+			},
+			hasoff:function(){
+				/*解绑*/
+				this.$off("hason",this.fn3);
+			}
+		}
+	})
+	
+</script>

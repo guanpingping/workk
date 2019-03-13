@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!--遍历数字-->
+			<p v-for="(item,index) in 10">{{item}}--------{{index}}</p>
+			<!--遍历字符串-->
+			<p v-for="(item,index) in 'qianfeng'">{{item}}--------{{index}}</p>
+			<!---->
+			<!--遍历数组-->
+			<div v-for="(item,index) in arr">{{item}}--------{{index}}</div>
+			<div v-for="(item,index) in obj">{{item}}--------{{index}}</div>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			arr:[12,34,21,53],
+			obj:[
+				{
+					"num":12,
+					"name":"zhou",
+					"age":18
+				},
+				{
+					"num":14,
+					"name":"guan",
+					"age":15
+				},
+				{
+					"num":16,
+					"name":"wang",
+					"age":17
+				}
+			]
+		}
+	})
+</script>

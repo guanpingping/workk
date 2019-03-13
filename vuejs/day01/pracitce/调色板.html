@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="range" min="0" max="255" v-model="r"/><!--{{r}}{{g}}{{b}}-->
+			<input type="range" min="0" max="255" v-model="g"/>
+			<input type="range" min="0" max="255" v-model="b"/><br>
+			宽：<input type="number" v-model="w"/>
+			高：<input type="number" v-model="h"/>
+			<div v-bind:style="{'width':w+'px','height':h+'px',background:`rgb(${r},${g},${b})`}"></div>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vw = new Vue({
+		el:"#app",
+		data:{
+			r:0,
+			g:0,
+			b:0,
+			h:100,
+			w:100
+		}
+	})
+</script>

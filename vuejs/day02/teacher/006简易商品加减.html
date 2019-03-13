@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>三只松鼠</p>
+        <p>单价：{{price}}</p>
+        <button @click="handleReduce()">-</button>
+        <input type="text" v-model="num">
+        <button @click="handleAdd()">+</button>
+        <p>运费：{{freight}}</p>
+        <p>小计：{{sum}}</p>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    /*
+        299  包邮
+
+        10  运费
+
+
+        小计
+
+
+    */
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            num:1,
+            freight:10,
+            price:39
+        },
+        computed:{
+            sum(){
+                return this.num*this.price>=299?this.num*this.price:this.num*this.price+this.freight;
+            }
+        },
+        methods:{
+            handleReduce(){
+                if(this.num == 1){
+                    this.num = 1;
+                }else{
+                    this.num-- 
+                }
+            },
+            handleAdd(){
+                this.num++;
+            }
+        }
+    })
+</script>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+
+        ul,li{
+            list-style: none;
+        }
+
+        #app>ul{
+            width: 280px;
+            height: 30px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #app>ul>li{
+            text-align: center;
+            line-height: 30px;
+            width: 100%;
+        }
+        #app>ul>.active{
+            background:#c33;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li 
+                v-for="(item,index) in navs" 
+                v-bind="{class:activeIndex == index? 'active':'',title:123,data_id:456}"
+                @click="handleToggle(index)"
+                >{{item}}</li>
+        </ul>
+
+
+        <div v-bind:data="src">盒子</div>
+        <div v-bind:class="myClass">盒子</div>
+        <div v-bind:class="myClassArray">盒子</div>
+        <div v-bind:class="myClassObj">盒子</div>
+        <img v-bind:src="imgSrc"/>
+        <div v-bind:style="myStyle"></div>
+        <a v-bind:href="path">百度</a>
+
+        <hr>
+
+        <div :data="src">盒子</div>
+        <div :class="myClass">盒子</div>
+        <div :class="myClassArray">盒子</div>
+        <div :class="myClassObj">盒子</div>
+        <img :src="imgSrc"/>
+        <div :style="myStyle"></div>
+        <a :href="path">百度</a>
+    </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"1819",
+            navs:["首页","文档","我的"],
+            activeIndex:0,
+            src:"http://www.baidu.com",
+            myClass:"box box1 box2",
+            myClassArray:["box","box1","box2","box3"],
+            myClassObj:{"box":true,"box1":false,"box2":true,"box3":false},
+            imgSrc:"https://cn.vuejs.org/images/logo.png",
+            myStyle:{
+                width:"100px",
+                height:"100px",
+                background:"red"
+            },
+            path:"https://www.baidu.com"
+        },
+        methods:{
+            handleToggle(index){
+                this.activeIndex = index;
+            }   
+        }
+    })
+    
+    /*
+        v-bind:
+            绑定属性
+
+            简写：
+                :属性名称
+    */
+</script>

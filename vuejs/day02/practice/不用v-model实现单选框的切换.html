@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<label>
+				男：<input type="radio" value="男" v-bind:checked="radioval=='男'" v-on:click="clickhas($event)"/>
+				女：<input type="radio" value="女" v-bind:checked="radioval=='女'"  v-on:click="clickhas($event)"/>
+				<p>
+					你的选择的性别是:{{radioval}}
+				</p>				
+			</label>
+			<hr>
+			<select v-model="optionval">
+				<option>2000</option>
+				<option>2001</option>
+				<option>2002</option>
+				<option>2003</option>
+				<option>2004</option>
+				<option>2005</option>
+			</select>
+			<p>
+				你的选择的年级是:{{optionval}}
+			</p>
+			<hr>
+			<select v-on:click="selclick($event)" v-bind:value="optionval">
+				<option>2000</option>
+				<option>2001</option>
+				<option>2002</option>
+				<option>2003</option>
+				<option>2004</option>
+				<option>2005</option>
+			</select>
+			<p>
+				你的选择的年级是:{{optionval}}
+			</p>
+			<hr>
+			追剧<input type="checkbox" value="追剧" v-on:click="checkclick($event)"/>
+			旅游<input type="checkbox" value="旅游" v-on:click="checkclick($event)"/>
+			蹦极<input type="checkbox" value="蹦极" v-on:click="checkclick($event)"/>
+			烫发<input type="checkbox" value="烫发" v-on:click="checkclick($event)"/>
+			<hr>
+		<!--	追剧<input type="checkbox" value="追剧" v-model="checkarr"/>
+			旅游<input type="checkbox" value="旅游" v-model="checkarr"/>
+			蹦极<input type="checkbox" value="蹦极" v-model="checkarr"/>
+			烫发<input type="checkbox" value="烫发" v-model="checkarr"/>-->
+			<ul>
+            	<li v-for="(item,index) in checkarr">{{item}}</li>
+       		</ul>
+		</div>
+	</body>
+</html>
+<script src="vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			radioval:"男",
+			optionval:"2001",
+			checkarr:[]
+		},
+		methods:{
+			clickhas:function(e){
+				this.radioval = e.target.value;
+			},
+			selclick:function(e){
+				this.optionval = e.target.value;
+			},
+			checkclick:function(e){
+				if( this.checkarr.length == 0 ){
+					this.checkarr.push(e.target.value);
+				}else{
+					if( !this.checkarr.includes(e.target.value) ){
+						this.checkarr.push(e.target.value);
+					}else{
+						var index = this.checkarr.indexOf( e.target.value );
+						this.checkarr.splice(index,1)
+					}
+				}
+				console.log(this.checkarr)
+			}
+		}
+	})
+</script>
